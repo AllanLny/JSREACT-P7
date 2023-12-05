@@ -1783,12 +1783,15 @@ function RecipeTemplate(recipe) {
         const card = document.createElement('div');
         card.classList.add('recipe-card');
 
-        const recipeimage = `data/pictures/${image}`;
+        const recipeImage = `data/pictures/${image}`;
 
         const img = document.createElement('img');
-        img.setAttribute("src", recipeimage);
+        img.setAttribute("src", recipeImage);
         img.classList.add('recipe-img');
         img.setAttribute("alt", "photographie de" + name);
+
+        const cardTxt = document.createElement('div');
+        cardTxt.classList.add('recipe-txt');
 
         const h2 = document.createElement('h2');
         h2.textContent = name;
@@ -1801,6 +1804,13 @@ function RecipeTemplate(recipe) {
         Time.classList.add('recipe-time');
 
 
+        const cardRecipeDesc = document.createElement('div');
+        cardRecipeDesc.textContent = 'Recette';
+        cardRecipeDesc.classList.add('recipe-desc');
+
+        const recipeDescription = document.createElement('p');
+        recipeDescription.textContent = description;
+        recipeDescription.classList.add('recipe-desc-txt');
 
         // const pAppliance = document.createElement('p');
         // pAppliance.textContent = `Appliance: ${appliance}`;
@@ -1818,18 +1828,17 @@ function RecipeTemplate(recipe) {
         //     ulIngredients.appendChild(li);
         // });
 
-        // const pDescription = document.createElement('p');
-        // pDescription.textContent = `Description: ${description}`;
-
         card.appendChild(img);
-        card.appendChild(h2);
-        // card.appendChild(pServings);
+        card.appendChild(cardTxt);
+        cardTxt.appendChild(h2);
         card.appendChild(Time);
+        cardTxt.appendChild(cardRecipeDesc)
+        cardRecipeDesc.appendChild(recipeDescription);
+        // card.appendChild(pServings);
         // card.appendChild(pAppliance);
         // card.appendChild(pUstensils);
         // card.appendChild(pIngredients);
         // card.appendChild(ulIngredients);
-        // card.appendChild(pDescription);
 
         return card;
     }

@@ -159,3 +159,33 @@ header h1 {
   border-radius: 25px;
   padding: 5px 15px 5px 15px;
 }
+
+.recipe-txt {
+  padding: 20px;
+}
+.recipe-txt h2 {
+  font-family: Anton;
+  font-size: 18px;
+  font-weight: 400;
+  margin-bottom: 25px;
+}
+
+.recipe-desc {
+  color: #7a7a7a;
+  font-family: Manrope;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+}
+.recipe-desc-txt {
+  color: #1b1b1b;
+  font-family: Manrope;
+  font-size: 14px;
+  font-weight: 400;
+  letter-spacing: 1px;
+  text-transform: none;
+  overflow: hidden;
+  height: 100px;
+  margin-top: 15px;
+}
