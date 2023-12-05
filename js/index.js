@@ -1774,3 +1774,75 @@ const recipes = [
         "ustensils": ["rouleau à patisserie", "fouet"]
     }
 ]
+
+
+function RecipeTemplate(recipe) {
+    const { id, image, name, servings, ingredients, time, description, appliance, ustensils } = recipe;
+
+    function getRecipeCardDOM() {
+        const card = document.createElement('div');
+        card.classList.add('recipe-card');
+
+        const recipeimage = `data/pictures/${image}`;
+
+        const img = document.createElement('img');
+        img.setAttribute("src", recipeimage);
+        img.classList.add('recipe-img');
+        img.setAttribute("alt", "photographie de" + name);
+
+        const h2 = document.createElement('h2');
+        h2.textContent = name;
+
+        // const pServings = document.createElement('p');
+        // pServings.textContent = `Servings: ${servings}`;
+
+        const Time = document.createElement('p');
+        Time.textContent = `${time} min`;
+        Time.classList.add('recipe-time');
+
+
+
+        // const pAppliance = document.createElement('p');
+        // pAppliance.textContent = `Appliance: ${appliance}`;
+
+        // const pUstensils = document.createElement('p');
+        // pUstensils.textContent = `Ustensils: ${ustensils.join(', ')}`;
+
+        // const pIngredients = document.createElement('p');
+        // pIngredients.textContent = 'Ingredients:';
+
+        // const ulIngredients = document.createElement('ul');
+        // ingredients.forEach(ingredient => {
+        //     const li = document.createElement('li');
+        //     li.textContent = `${ingredient.quantity} ${ingredient.unit || ''} ${ingredient.ingredient}`;
+        //     ulIngredients.appendChild(li);
+        // });
+
+        // const pDescription = document.createElement('p');
+        // pDescription.textContent = `Description: ${description}`;
+
+        card.appendChild(img);
+        card.appendChild(h2);
+        // card.appendChild(pServings);
+        card.appendChild(Time);
+        // card.appendChild(pAppliance);
+        // card.appendChild(pUstensils);
+        // card.appendChild(pIngredients);
+        // card.appendChild(ulIngredients);
+        // card.appendChild(pDescription);
+
+        return card;
+    }
+
+    return { id, image, name, servings, ingredients, time, description, appliance, ustensils, getRecipeCardDOM };
+}
+
+// Example usage:
+const recipeTemplates = recipes.map(recipe => RecipeTemplate(recipe));
+
+// Display recipe cards on the page
+const container = document.getElementById('Recette');
+recipeTemplates.forEach(recipeTemplate => {
+    const card = recipeTemplate.getRecipeCardDOM();
+    container.appendChild(card);
+});
