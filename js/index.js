@@ -25,6 +25,7 @@ const recipes = [
                 "unit": "grammes"
             },
             {
+                "quantity": 2,
                 "ingredient": "Glaçons"
             }
         ],
@@ -1774,7 +1775,7 @@ const recipes = [
         "ustensils": ["rouleau à patisserie", "fouet"]
     }
 ]
-
+//  Template Recettes //
 
 function RecipeTemplate(recipe) {
     const { id, image, name, servings, ingredients, time, description, appliance, ustensils } = recipe;
@@ -1796,9 +1797,6 @@ function RecipeTemplate(recipe) {
         const h2 = document.createElement('h2');
         h2.textContent = name;
 
-        // const pServings = document.createElement('p');
-        // pServings.textContent = `Servings: ${servings}`;
-
         const Time = document.createElement('p');
         Time.textContent = `${time} min`;
         Time.classList.add('recipe-time');
@@ -1812,21 +1810,19 @@ function RecipeTemplate(recipe) {
         recipeDescription.textContent = description;
         recipeDescription.classList.add('recipe-desc-txt');
 
-        // const pAppliance = document.createElement('p');
-        // pAppliance.textContent = `Appliance: ${appliance}`;
+        const pIngredients = document.createElement('div');
+        pIngredients.classList.add('recipe-ingredient');
+        pIngredients.textContent = 'Ingredients:';
 
-        // const pUstensils = document.createElement('p');
-        // pUstensils.textContent = `Ustensils: ${ustensils.join(', ')}`;
-
-        // const pIngredients = document.createElement('p');
-        // pIngredients.textContent = 'Ingredients:';
-
-        // const ulIngredients = document.createElement('ul');
-        // ingredients.forEach(ingredient => {
-        //     const li = document.createElement('li');
-        //     li.textContent = `${ingredient.quantity} ${ingredient.unit || ''} ${ingredient.ingredient}`;
-        //     ulIngredients.appendChild(li);
-        // });
+        const ulIngredients = document.createElement('ul');
+        ingredients.forEach(ingredient => {
+            const li = document.createElement('li');
+            li.textContent = `  ${ingredient.ingredient}`;
+            ulIngredients.appendChild(li);
+            const spanIngredients = document.createElement('span');
+            spanIngredients.textContent = `${ingredient.quantity} ${ingredient.unit || ''}`;
+            li.appendChild(spanIngredients);
+        });
 
         card.appendChild(img);
         card.appendChild(cardTxt);
@@ -1834,22 +1830,19 @@ function RecipeTemplate(recipe) {
         card.appendChild(Time);
         cardTxt.appendChild(cardRecipeDesc)
         cardRecipeDesc.appendChild(recipeDescription);
-        // card.appendChild(pServings);
-        // card.appendChild(pAppliance);
-        // card.appendChild(pUstensils);
-        // card.appendChild(pIngredients);
-        // card.appendChild(ulIngredients);
+        card.appendChild(pIngredients);
+        pIngredients.appendChild(ulIngredients);
 
         return card;
     }
 
-    return { id, image, name, servings, ingredients, time, description, appliance, ustensils, getRecipeCardDOM };
+    return { id, image, name, ingredients, time, description, appliance, ustensils, getRecipeCardDOM };
 }
 
-// Example usage:
 const recipeTemplates = recipes.map(recipe => RecipeTemplate(recipe));
 
-// Display recipe cards on the page
+// Affichage Cards// 
+
 const container = document.getElementById('Recette');
 recipeTemplates.forEach(recipeTemplate => {
     const card = recipeTemplate.getRecipeCardDOM();
