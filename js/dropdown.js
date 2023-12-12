@@ -22,8 +22,8 @@ dropdownBtn.forEach(dropdown => {
         }
         else {
             dropdown.parentElement.classList.add("active")
-            dropdownContent.style.display = "block";
-            dropdownOption.style.display = "block";
+            dropdownContent.style.display = "flex";
+            dropdownOption.style.display = "flex";
             angleDown.classList.remove("fa-angle-down");
             angleDown.classList.add("fa-angle-up");
         }
