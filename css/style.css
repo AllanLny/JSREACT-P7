@@ -133,7 +133,7 @@ header h1 {
   padding: 15px;
 }
 .active {
-  max-height: 100px;
+  max-height: 250px;
 }
 .dropdown-btn {
   display: flex;
@@ -145,10 +145,28 @@ header h1 {
   cursor: pointer;
 }
 
+.dropdown-options {
+  display: none;
+  margin-top: 15px;
+  width: 160px;
+  align-items: center;
+  height: 170px;
+  overflow-y: scroll;
+}
+
+.option {
+  display: flex;
+  flex-direction: row;
+  color: #1b1b1b;
+  font-family: Manrope;
+  font-size: 14px;
+  padding-bottom: 10px;
+  cursor: pointer;
+}
 /* Recipe */
 
 #Recette {
-  margin-top: 70px;
+  margin-top: 40px;
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 0px;
@@ -207,7 +225,7 @@ header h1 {
   height: 100px;
 }
 .recipe-desc-txt,
-ul {
+.recipe-ingredient ul {
   color: #1b1b1b;
   font-family: Manrope;
   font-size: 14px;
@@ -222,18 +240,18 @@ ul {
   flex-direction: column;
   padding: 20px;
 }
-ul {
+.recipe-ingredient ul {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   gap: 9px;
 }
-li {
+.recipe-ingredient ul li {
   display: flex;
   flex-direction: column;
   gap: 5px;
   padding-bottom: 10px;
 }
-li span {
+.recipe-ingredient ul li span {
   color: #7a7a7a;
   font-family: Manrope;
   font-size: 14px;
