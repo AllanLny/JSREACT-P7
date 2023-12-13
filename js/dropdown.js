@@ -14,7 +14,6 @@ dropdowns.forEach(dropdown => {
 
         }
         else {
-            console.log(angleDown)
             dropdownBtn.parentElement.classList.add("active")
             dropdownOption.style.display = "flex";
             angleDown.classList.remove("fa-angle-down");
