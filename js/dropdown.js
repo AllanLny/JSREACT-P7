@@ -1,28 +1,21 @@
 const dropdowns = document.querySelectorAll(".dropdown");
-var dropdownBtn = [];
 
 dropdowns.forEach(dropdown => {
-    dropdownBtn.push(dropdown.querySelector(".dropdown-btn"));
-});
+    const dropdownBtn = dropdown.querySelector(".dropdown-btn");
+    const dropdownOption = dropdown.querySelector(".dropdown-options");
+    const angleDown = dropdownBtn.querySelector(".fa-angle-down");
 
-dropdownBtn.forEach(dropdown => {
-    const dropdownContent = dropdown.parentElement.querySelector(".content");
-    const angleDown = dropdown.querySelector(".fa-solid.fa-angle-down");
-    const dropdownOption = dropdownContent.querySelector(".dropdown-options");
-    const optionLi = dropdownOption.querySelectorAll(".option");
-
-    dropdown.addEventListener('click', () => {
-        if (dropdown.parentElement.classList.contains("active")) {
-            dropdownContent.style.display = "none";
+    dropdownBtn.addEventListener('click', () => {
+        if (dropdownBtn.parentElement.classList.contains("active")) {
             dropdownOption.style.display = "none";
-            dropdown.parentElement.classList.remove("active");
+            dropdownBtn.parentElement.classList.remove("active");
             angleDown.classList.remove("fa-angle-up");
             angleDown.classList.add("fa-angle-down");
 
         }
         else {
-            dropdown.parentElement.classList.add("active")
-            dropdownContent.style.display = "flex";
+            console.log(angleDown)
+            dropdownBtn.parentElement.classList.add("active")
             dropdownOption.style.display = "flex";
             angleDown.classList.remove("fa-angle-down");
             angleDown.classList.add("fa-angle-up");
@@ -30,30 +23,15 @@ dropdownBtn.forEach(dropdown => {
     })
 })
 
-const allIngredients = recipes.reduce((acc, recipe) => {
-    recipe.ingredients.forEach(ingredient => {
-        if (!acc.includes(ingredient.ingredient)) {
-            acc.push(ingredient.ingredient);
-        }
-    });
-    return acc;
-}, []);
+const allIngredients = Array.from(new Set([].concat(...recipes.map(recipe => recipe.ingredients.map(ingredient => ingredient.ingredient)))));
 
-const allAppliances = recipes.reduce((acc, recipe) => {
-    if (!acc.includes(recipe.appliance)) {
-        acc.push(recipe.appliance);
-    }
-    return acc;
-}, []);
 
-const allUstensils = recipes.reduce((acc, recipe) => {
-    recipe.ustensils.forEach(ustensil => {
-        if (!acc.includes(ustensil)) {
-            acc.push(ustensil);
-        }
-    });
-    return acc;
-}, []);
+const allAppliances = Array.from(new Set(recipes.map(recipe => recipe.appliance)));
+
+
+
+const allUstensils = Array.from(new Set([].concat(...recipes.map(recipe => recipe.ustensils))));
+
 
 const ingredientDropdown = document.getElementById('IngrédientsDropDown');
 allIngredients.forEach(ingredient => {

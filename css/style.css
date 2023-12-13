@@ -88,7 +88,7 @@ header h1 {
 .FilterBar {
   display: flex;
   justify-content: space-around;
-  gap: 520px;
+  gap: 570px;
   margin-top: 10px;
 }
 .FilterBar h1 {
@@ -99,11 +99,12 @@ header h1 {
 }
 .dropdown-section {
   display: flex;
-  gap: 50px;
+  gap: 30px;
 }
 .dropdown {
   width: 150px;
   max-height: 40px;
+  position: relative;
 }
 
 .dropdown-btn,
@@ -124,30 +125,17 @@ li {
   justify-content: space-between;
 }
 
-.content .search {
-  position: relative;
-}
-
-.content {
-  display: none;
-  padding: 10px 5px 10px 5px;
-  margin-top: -12px;
-  background: #fff;
-  border-radius: 7px;
-}
 .search {
   width: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
-  top: 15px;
-  z-index: 99;
+  margin-bottom: 10px;
 }
 
 .search input {
   margin-left: auto;
   margin-right: auto;
-  position: absolute;
   width: 90%;
   padding: 10px;
   padding-right: 27px;
@@ -163,15 +151,15 @@ li {
 .dropdown-options {
   display: none;
   flex-direction: column;
-  height: 170px;
+  height: 250px;
   overflow-y: scroll;
   position: absolute;
-  z-index: 98;
-  padding-top: 40px;
+  z-index: 99;
   background: #fff;
   border-radius: 7px;
   width: 150px;
-  margin-top: -10px;
+  padding-top: 10px;
+  top: 40px;
 }
 
 /* Hide scrollbar for Chrome, Safari and Opera */
@@ -191,8 +179,8 @@ li {
   cursor: pointer;
   padding-left: 15px;
   padding-right: 15px;
-  padding-top: 4px;
-  padding-bottom: 4px;
+  padding-top: 8px;
+  padding-bottom: 8px;
 }
 
 .option:hover {
