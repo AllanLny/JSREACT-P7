@@ -1841,10 +1841,44 @@ function RecipeTemplate(recipe) {
 
 const recipeTemplates = recipes.map(recipe => RecipeTemplate(recipe));
 
-// Affichage Cards// 
+// Affichage Cards sans le filtrage
 
 const container = document.getElementById('Recette');
 recipeTemplates.forEach(recipeTemplate => {
     const card = recipeTemplate.getRecipeCardDOM();
     container.appendChild(card);
 });
+
+function filterRecipes(searchTerm) {
+    const filteredRecipes = recipes.filter(recipe => {
+        const recipeName = recipe.name.toLowerCase();
+        const ingredients = recipe.ingredients.map(ingredient => ingredient.ingredient.toLowerCase());
+
+        return recipeName.includes(searchTerm) || ingredients.includes(searchTerm);
+    });
+
+    // Vidage du container
+    const container = document.getElementById('Recette');
+    container.innerHTML = '';
+
+    // Affichage des recettes filtrer
+    filteredRecipes.forEach(recipe => {
+        const recipeTemplate = RecipeTemplate(recipe);
+        const card = recipeTemplate.getRecipeCardDOM();
+        container.appendChild(card);
+    });
+}
+
+const searchInput = document.getElementById('search-bar');
+searchInput.addEventListener('search', function () {
+    const searchTerm = searchInput.value.toLowerCase();
+    filterRecipes(searchTerm);
+});
+
+
+const searchBtn = document.getElementById('search-btn-bar');
+searchBtn.addEventListener('click', function () {
+    const searchTerm = searchInput.value.toLowerCase();
+    filterRecipes(searchTerm);
+});
+
