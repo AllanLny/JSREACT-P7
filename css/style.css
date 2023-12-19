@@ -192,10 +192,31 @@ li {
   padding-right: 15px;
   padding-top: 8px;
   padding-bottom: 8px;
+  user-select: none;
 }
 
 .option:hover {
   background-color: #ffd15b;
+}
+/* Active Options */
+
+.active-option {
+  display: flex;
+  margin-top: 50px;
+  gap: 15px;
+}
+.active-option li {
+  background-color: #ffd15b;
+  border-radius: 10px;
+  padding: 15px 80px 15px 20px;
+  position: relative;
+  cursor: default;
+}
+.active-option i {
+  position: absolute;
+  z-index: 98;
+  right: 25px;
+  cursor: pointer;
 }
 
 /* Recipe */

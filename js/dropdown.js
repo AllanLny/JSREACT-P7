@@ -37,6 +37,7 @@ allIngredients.forEach(ingredient => {
     const dropdownOption = ingredientDropdown.querySelector(".dropdown-options")
     const optionLi = document.createElement("li");
     optionLi.className = 'option';
+    optionLi.setAttribute('data-dropdown', 'IngrédientsDropDown');
     optionLi.textContent = ingredient;
     dropdownOption.appendChild(optionLi);
     ingredientDropdown.appendChild(dropdownOption);
@@ -47,6 +48,7 @@ allAppliances.forEach(appliance => {
     const dropdownOption = applianceDropdown.querySelector(".dropdown-options")
     const optionLi = document.createElement("li");
     optionLi.className = 'option';
+    optionLi.setAttribute('data-dropdown', 'AppareilsDropDown');
     optionLi.textContent = appliance;
     dropdownOption.appendChild(optionLi);
     applianceDropdown.appendChild(dropdownOption);
@@ -57,7 +59,55 @@ allUstensils.forEach(ustensil => {
     const dropdownOption = ustensilDropdown.querySelector(".dropdown-options")
     const optionLi = document.createElement("li");
     optionLi.className = 'option';
+    optionLi.setAttribute('data-dropdown', 'UstensilesDropDown');
     optionLi.textContent = ustensil;
     dropdownOption.appendChild(optionLi);
     ustensilDropdown.appendChild(dropdownOption);
 });
+
+// Filtrage des dropdown 
+
+function Search(dropdownId) {
+    const dropdown = document.getElementById(dropdownId);
+    const searchInput = dropdown.querySelector('input[type="search"]');
+    const dropdownOptions = dropdown.querySelectorAll('.option');
+
+    searchInput.addEventListener('input', () => {
+        const searchTerm = searchInput.value.trim().toLowerCase();
+
+        dropdownOptions.forEach(option => {
+            const optionText = option.textContent.toLowerCase();
+            const isMatch = optionText.includes(searchTerm);
+            option.style.display = isMatch ? 'block' : 'none';
+        });
+    });
+}
+Search('IngrédientsDropDown');
+Search('AppareilsDropDown');
+Search('UstensilesDropDown');
+
+
+function DropdownOptionActive() {
+    const Options = document.querySelectorAll('.option');
+    const activeOptionContainer = document.querySelector('.active-option');
+
+    Options.forEach(option => {
+        option.addEventListener('click', () => {
+            if (option.classList.contains('active')) {
+                // Si l'option est active, déterminer à quel dropdown elle appartient
+                const dropdownClass = option.getAttribute('data-dropdown');
+                const dropdown = document.querySelector(`#${dropdownClass} .dropdown-options`);
+                option.classList.remove('active');
+                dropdown.appendChild(option);
+
+            } else {
+                option.classList.add('active');
+                activeOptionContainer.appendChild(option);
+                const optionClose = document.createElement("i");
+                optionClose.className = 'fa-solid fa-x';
+                option.appendChild(optionClose);
+            }
+        });
+    });
+}
+DropdownOptionActive();
