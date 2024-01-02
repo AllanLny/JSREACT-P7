@@ -1,38 +1,24 @@
-let previousSearchResults = [];
+let previousResults = [];
 
 function filterRecipes(searchValue) {
-    const filteredRecipes = [];
     const container = document.getElementById('Recette');
     container.innerHTML = '';
-    previousSearchResults = filteredRecipes;
 
-    for (let i = 0; i < recipes.length; i++) {
-        const recipe = recipes[i];
+    const filteredRecipes = recipes.filter(recipe => {
         const recipeName = recipe.name.toLowerCase();
+        const includesSearchValue = recipeName.includes(searchValue) ||
+            recipe.ingredients.some(ingredient => ingredient.ingredient.toLowerCase().includes(searchValue));
 
-        // Boucle pour vérifier le noms des recettes 
-        if (recipeName.includes(searchValue)) {
-            filteredRecipes.push(recipe);
-
+        if (includesSearchValue) {
             const recipeTemplate = RecipeTemplate(recipe);
             const card = recipeTemplate.getRecipeCardDOM();
             container.appendChild(card);
-            continue;
         }
 
-        // Boucle pour vérifier les ingredients 
-        for (let j = 0; j < recipe.ingredients.length; j++) {
-            const ingredient = recipe.ingredients[j].ingredient.toLowerCase();
-            if (ingredient.includes(searchValue)) {
-                filteredRecipes.push(recipe);
+        return includesSearchValue;
+    });
 
-                const recipeTemplate = RecipeTemplate(recipe);
-                const card = recipeTemplate.getRecipeCardDOM();
-                container.appendChild(card);
-                break;
-            }
-        }
-    }
+    previousResults = filteredRecipes;
 
     // Mettre à jour le nombre de recettes affichées
     const nbrRecettesElement = document.querySelector('.nbr-recettes');
@@ -40,6 +26,7 @@ function filterRecipes(searchValue) {
         ? '1500 recettes'
         : `${filteredRecipes.length} recettes`;
 }
+
 const searchElements = document.querySelectorAll('#search-bar, #search-btn-bar');
 const searchInput = document.getElementById('search-bar');
 
@@ -56,10 +43,9 @@ for (const element of searchElements) {
     });
 }
 
-
 function filterRecipesByTags(activeOptions) {
 
-    let currentResults = previousSearchResults;
+    let currentResults = previousResults;
 
     // Sélectionne uniquement les options actives dans la div .active-option
     const activeOptionTexts = Array.from(document.querySelectorAll('.active-option .option'))
