@@ -1,24 +1,39 @@
+
 let previousResults = [];
 
 function filterRecipes(searchValue) {
+    const filteredRecipes = [];
     const container = document.getElementById('Recette');
     container.innerHTML = '';
+    previousResults = filteredRecipes;
 
-    const filteredRecipes = recipes.filter(recipe => {
+    for (let i = 0; i < recipes.length; i++) {
+        const recipe = recipes[i];
         const recipeName = recipe.name.toLowerCase();
-        const includesSearchValue = recipeName.includes(searchValue) ||
-            recipe.ingredients.some(ingredient => ingredient.ingredient.toLowerCase().includes(searchValue));
 
-        if (includesSearchValue) {
+        // Boucle pour vérifier le noms des recettes 
+        if (recipeName.includes(searchValue)) {
+            filteredRecipes.push(recipe);
+
             const recipeTemplate = RecipeTemplate(recipe);
             const card = recipeTemplate.getRecipeCardDOM();
             container.appendChild(card);
+            continue;
         }
 
-        return includesSearchValue;
-    });
+        // Boucle pour vérifier les ingredients 
+        for (let j = 0; j < recipe.ingredients.length; j++) {
+            const ingredient = recipe.ingredients[j].ingredient.toLowerCase();
+            if (ingredient.includes(searchValue)) {
+                filteredRecipes.push(recipe);
 
-    previousResults = filteredRecipes;
+                const recipeTemplate = RecipeTemplate(recipe);
+                const card = recipeTemplate.getRecipeCardDOM();
+                container.appendChild(card);
+                break;
+            }
+        }
+    }
 
     // Mettre à jour le nombre de recettes affichées
     const nbrRecettesElement = document.querySelector('.nbr-recettes');
@@ -26,7 +41,6 @@ function filterRecipes(searchValue) {
         ? '1500 recettes'
         : `${filteredRecipes.length} recettes`;
 }
-
 const searchElements = document.querySelectorAll('#search-bar, #search-btn-bar');
 const searchInput = document.getElementById('search-bar');
 
