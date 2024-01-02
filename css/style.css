@@ -204,6 +204,16 @@ li {
   display: flex;
   margin-top: 50px;
   gap: 15px;
+  overflow-x: scroll;
+}
+.active-option::-webkit-scrollbar {
+  display: none;
+}
+
+/* Hide scrollbar for IE, Edge and Firefox */
+.active-option {
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
 }
 .active-option li {
   background-color: #ffd15b;

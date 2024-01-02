@@ -87,6 +87,28 @@ Search('AppareilsDropDown');
 Search('UstensilesDropDown');
 
 
+function updateRecipeList() {
+    const activeOptions = document.querySelectorAll('.active .option');
+    const filteredRecipes = filterRecipesByTags(activeOptions);
+
+    // Met à jour le nombre de recettes dans le h1 avec la classe nbr-recettes
+    const nbrRecettesElement = document.querySelector('.nbr-recettes');
+    nbrRecettesElement.textContent = filteredRecipes.length === recipes.length
+        ? '1500 recettes'
+        : `${filteredRecipes.length} recettes`;
+
+    // Supprime les recettes 
+    const container = document.getElementById('Recette');
+    container.innerHTML = '';
+
+    // Affiche les recettes filtrées
+    filteredRecipes.forEach(recipe => {
+        const recipeTemplate = RecipeTemplate(recipe);
+        const card = recipeTemplate.getRecipeCardDOM();
+        container.appendChild(card);
+    });
+}
+
 function DropdownOptionActive() {
     const Options = document.querySelectorAll('.option');
     const activeOptionContainer = document.querySelector('.active-option');
@@ -94,12 +116,12 @@ function DropdownOptionActive() {
     Options.forEach(option => {
         option.addEventListener('click', () => {
             if (option.classList.contains('active')) {
-                // Si l'option est active, déterminer à quel dropdown elle appartient
+                option.classList.remove('active');
                 const dropdownClass = option.getAttribute('data-dropdown');
                 const dropdown = document.querySelector(`#${dropdownClass} .dropdown-options`);
-                option.classList.remove('active');
+                const optionClose = option.querySelector('.fa-solid.fa-x');
+                optionClose.remove()
                 dropdown.appendChild(option);
-
             } else {
                 option.classList.add('active');
                 activeOptionContainer.appendChild(option);
@@ -107,7 +129,9 @@ function DropdownOptionActive() {
                 optionClose.className = 'fa-solid fa-x';
                 option.appendChild(optionClose);
             }
+            updateRecipeList();
         });
     });
 }
+
 DropdownOptionActive();
