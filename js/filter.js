@@ -10,7 +10,7 @@ function filterRecipes(searchValue) {
         const recipe = recipes[i];
         const recipeName = recipe.name.toLowerCase();
 
-        // Boucle pour verifier le noms des recettes 
+        // Boucle pour vérifier le noms des recettes 
         if (recipeName.includes(searchValue)) {
             filteredRecipes.push(recipe);
 
@@ -20,7 +20,7 @@ function filterRecipes(searchValue) {
             continue;
         }
 
-        //  Boucle pour verifier les ingredients 
+        // Boucle pour vérifier les ingredients 
         for (let j = 0; j < recipe.ingredients.length; j++) {
             const ingredient = recipe.ingredients[j].ingredient.toLowerCase();
             if (ingredient.includes(searchValue)) {
@@ -33,8 +33,13 @@ function filterRecipes(searchValue) {
             }
         }
     }
-}
 
+    // Mettre à jour le nombre de recettes affichées
+    const nbrRecettesElement = document.querySelector('.nbr-recettes');
+    nbrRecettesElement.textContent = filteredRecipes.length === recipes.length
+        ? '1500 recettes'
+        : `${filteredRecipes.length} recettes`;
+}
 const searchElements = document.querySelectorAll('#search-bar, #search-btn-bar');
 const searchInput = document.getElementById('search-bar');
 
