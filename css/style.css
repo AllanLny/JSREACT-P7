@@ -322,3 +322,41 @@ li {
   font-family: Manrope;
   font-size: 14px;
 }
+
+@media (max-width: 1300px) {
+  .FilterBar {
+    gap: 0px;
+  }
+  #Recette {
+    display: grid;
+    margin-top: 40px;
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 714px) {
+  .FilterBar {
+    gap: 0px;
+  }
+  #Recette {
+    display: grid;
+    margin-top: 40px;
+    grid-template-columns: repeat(1, 1fr);
+  }
+
+  .FilterBar h1 {
+    font-size: 20px;
+  }
+  .dropdown-section {
+    gap: 10px;
+  }
+  .dropdown {
+    width: 120px;
+    max-height: 40px;
+    position: relative;
+  }
+
+  .dropdown-options {
+    width: 120px;
+  }
+}
