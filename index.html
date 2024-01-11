@@ -38,7 +38,7 @@
           id="search-bar"
           placeholder="Rechercher une recette, un ingrédient, ..."
         />
-        <i class="fa-solid fa-magnifying-glass" id="search-btn-bar" ></i>
+        <i class="fa-solid fa-magnifying-glass" id="search-btn-bar"></i>
       </div>
     </header>
     <main>
@@ -48,53 +48,49 @@
             <div class="dropdown-btn">
               <span>Ingrédient</span>
               <i class="fa-solid fa-angle-down"></i>
-            </div>    
-              <ul class="dropdown-options">
-                <div class="search">
-                  <label for="searchDropDown"></label>
-                  <input type="search" id="searchDropDown" />
-                  <i class="fa-solid fa-magnifying-glass"></i>
-                </div>
-              </ul>
             </div>
-            <div class="dropdown" id="AppareilsDropDown">
-              <div class="dropdown-btn">
-                <span>Appareils</span>
-                <i class="fa-solid fa-angle-down"></i>
-              </div>
-                <ul class="dropdown-options">
-                  <div class="search">
-                    <label for="searchDropDown"></label>
-                    <input type="search" id="searchDropDown" />
-                    <i class="fa-solid fa-magnifying-glass"></i>
-                </ul>
-              </div>
-              <div class="dropdown" id="UstensilesDropDown">
-                <div class="dropdown-btn">
-                  <span>Ustensiles</span>
-                  <i class="fa-solid fa-angle-down"></i>
-                </div>
-                  <ul class="dropdown-options">
-                    <div class="search">
-                      <label for="searchDropDown"></label>
-                      <input type="search" id="searchDropDown" />
-                      <i class="fa-solid fa-magnifying-glass"></i>
-    
-                  </ul>
-                </div>
+            <ul class="dropdown-options">
+              <li class="search">
+                <label for="searchDropDown"></label>
+                <input type="search" id="searchDropDown" />
+                <i class="fa-solid fa-magnifying-glass"></i>
+              </li>
+            </ul>
+          </div>
+          <div class="dropdown" id="AppareilsDropDown">
+            <div class="dropdown-btn">
+              <span>Appareils</span>
+              <i class="fa-solid fa-angle-down"></i>
             </div>
-              <h1 class="nbr-recettes">1500 recettes</h1>
+            <ul class="dropdown-options">
+              <li class="search">
+                <label for="searchDropDown2"></label>
+                <input type="search" id="searchDropDown2" />
+                <i class="fa-solid fa-magnifying-glass"></i>
+              </li>
+            </ul>
+          </div>
+          <div class="dropdown" id="UstensilesDropDown">
+            <div class="dropdown-btn">
+              <span>Ustensiles</span>
+              <i class="fa-solid fa-angle-down"></i>
             </div>
-            
+            <ul class="dropdown-options">
+              <li class="search">
+                <label for="searchDropDown3"></label>
+                <input type="search" id="searchDropDown3" />
+                <i class="fa-solid fa-magnifying-glass"></i>
+              </li>
+            </ul>
           </div>
         </div>
+        <h1 class="nbr-recettes">1500 recettes</h1>
       </div>
-      <div class="active-option"> </div>
+      <div class="active-option"></div>
       <div id="Recette"></div>
     </main>
     <script src="js/filter.js"></script>
     <script src="js/index.js"></script>
     <script src="js/dropdown.js"></script>
-    
   </body>
 </html>

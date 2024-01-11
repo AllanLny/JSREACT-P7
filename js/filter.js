@@ -43,6 +43,13 @@ for (const element of searchElements) {
     });
 }
 
+function runFilterRecipes() {
+    filterRecipes(''); // Pass an empty string as the initial search value
+}
+
+document.addEventListener('DOMContentLoaded', function () {
+    runFilterRecipes();
+})
 
 function filterRecipesByTags(activeOptions) {
 
