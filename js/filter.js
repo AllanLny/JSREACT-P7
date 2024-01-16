@@ -25,6 +25,8 @@ function filterRecipes(searchValue) {
     nbrRecettesElement.textContent = filteredRecipes.length === recipes.length
         ? '1500 recettes'
         : `${filteredRecipes.length} recettes`;
+    // Mettre à jour les options des dropdowns
+    updateDropdownOptions(filteredRecipes);
 }
 
 const searchElements = document.querySelectorAll('#search-bar, #search-btn-bar');
