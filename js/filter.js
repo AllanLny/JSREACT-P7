@@ -32,7 +32,7 @@ function filterRecipes(searchValue) {
 const searchElements = document.querySelectorAll('#search-bar, #search-btn-bar');
 const searchInput = document.getElementById('search-bar');
 
-// Ajout des events listeners 
+// Ajout des events listeners
 for (const element of searchElements) {
     element.addEventListener('search', function () {
         const searchValue = searchInput.value.toLowerCase();
