@@ -135,3 +135,44 @@ function DropdownOptionActive() {
 }
 
 DropdownOptionActive();
+
+function updateDropdownOptions(filteredRecipes) {
+    // Mettre à jour les options de chaque dropdown
+    updateDropdownOptionsForCategory('IngrédientsDropDown', filteredRecipes, 'ingredients');
+    updateDropdownOptionsForCategory('AppareilsDropDown', filteredRecipes, 'appliance');
+    updateDropdownOptionsForCategory('UstensilesDropDown', filteredRecipes, 'ustensils');
+}
+
+function updateDropdownOptionsForCategory(dropdownId, filteredRecipes, category) {
+    const dropdown = document.getElementById(dropdownId);
+    const dropdownOptions = dropdown.querySelectorAll('.option');
+
+    // Extract unique values for the given category from the filtered recipes
+    const uniqueValues = Array.from(new Set([].concat(
+        ...filteredRecipes.map(recipe => {
+            const categoryItems = recipe[category];
+
+            // Check if categoryItems is an array, and if not, convert it to an array
+            const itemsArray = Array.isArray(categoryItems) ? categoryItems : [categoryItems];
+
+            return itemsArray.map(item => {
+                // For ingredients, we need to consider a nested structure
+                if (category === 'ingredients') {
+                    return typeof item.ingredient === 'string'
+                        ? item.ingredient.toLowerCase()
+                        : String(item.ingredient).toLowerCase();
+                } else {
+                    // Check if item is a string, and if not, convert it to a string
+                    return typeof item === 'string' ? item.toLowerCase() : String(item).toLowerCase();
+                }
+            });
+        })
+    )));
+
+    // Update dropdown options
+    dropdownOptions.forEach(option => {
+        const optionText = option.textContent.toLowerCase();
+        const isMatch = uniqueValues.includes(optionText);
+        option.style.display = isMatch ? 'block' : 'none';
+    });
+}
