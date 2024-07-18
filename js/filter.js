@@ -25,6 +25,7 @@ function filterRecipes(searchValue) {
     nbrRecettesElement.textContent = filteredRecipes.length === recipes.length
         ? '1500 recettes'
         : `${filteredRecipes.length} recettes`;
+
     // Mettre à jour les options des dropdowns
     updateDropdownOptions(filteredRecipes);
 }
@@ -34,7 +35,7 @@ const searchInput = document.getElementById('search-bar');
 
 // Ajout des events listeners
 for (const element of searchElements) {
-    element.addEventListener('search', function () {
+    element.addEventListener('input', function () { // Utilisation de 'input' au lieu de 'search'
         const searchValue = searchInput.value.toLowerCase();
         filterRecipes(searchValue);
     });
@@ -51,10 +52,9 @@ function runFilterRecipes() {
 
 document.addEventListener('DOMContentLoaded', function () {
     runFilterRecipes();
-})
+});
 
 function filterRecipesByTags(activeOptions) {
-
     let currentResults = previousResults;
 
     // Sélectionne uniquement les options actives dans la div .active-option
